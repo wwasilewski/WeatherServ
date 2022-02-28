@@ -4,24 +4,24 @@ import java.util.Objects;
 
 public class Weather {
 
-    private float temperature;
+    private float temp;
     private float pressure;
     private int humidity;
     private Wind wind;
 
-    public Weather(float temperature, float pressure, int humidity, Wind wind) {
-        this.temperature = temperature;
+    public Weather(float temp, float pressure, int humidity, Wind wind) {
+        this.temp = temp;
         this.pressure = pressure;
         this.humidity = humidity;
         this.wind = wind;
     }
 
-    public float getTemperature() {
-        return temperature;
+    public float getTemp() {
+        return temp;
     }
 
-    public void setTemperature(float temperature) {
-        this.temperature = temperature;
+    public void setTemp(float temp) {
+        this.temp = temp;
     }
 
     public float getPressure() {
@@ -53,20 +53,20 @@ public class Weather {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Weather weather = (Weather) o;
-        return Float.compare(weather.getTemperature(), getTemperature()) == 0
+        return Float.compare(weather.getTemp(), getTemp()) == 0
                 && Float.compare(weather.getPressure(), getPressure()) == 0
                 && getHumidity() == weather.getHumidity() && Objects.equals(getWind(), weather.getWind());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTemperature(), getPressure(), getHumidity(), getWind());
+        return Objects.hash(getTemp, getPressure(), getHumidity(), getWind());
     }
 
     @Override
     public String toString() {
         return "Weather{" +
-                "temperature=" + temperature +
+                "temperature=" + temp +
                 ", pressure=" + pressure +
                 ", humidity=" + humidity +
                 ", wind=" + wind +
