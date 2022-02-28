@@ -4,27 +4,27 @@ import java.util.Objects;
 
 public class Coord {
 
-    private int lon; //longitude
-    private int lat; //latitude
+    private float lon; //longitude
+    private float lat; //latitude
 
-    public Coord(int lon, int lat) {
+    public Coord(float lon, float lat) {
         this.lon = lon;
         this.lat = lat;
     }
 
-    public int getLon() {
+    public float getLon() {
         return lon;
     }
 
-    public void setLon(int lon) {
+    public void setLon(float lon) {
         this.lon = lon;
     }
 
-    public int getLat() {
+    public float getLat() {
         return lat;
     }
 
-    public void setLat(int lat) {
+    public void setLat(float lat) {
         this.lat = lat;
     }
 
