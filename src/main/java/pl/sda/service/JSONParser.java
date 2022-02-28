@@ -13,29 +13,29 @@ public class JSONParser {
 
     public static void main(String[] args) {
         Coord coord = new Coord(50, 50);
-        Location loc1 = new Location("EU", "Poland", coord);
-       Location loc2 = new Location("EU", "Germany", coord);
+        Location loc1 = new Location("Warszawa","EU", "Poland", coord);
+       Location loc2 = new Location("Berlin", "EU", "Germany", coord);
 
         addLocationObjectToJSON(loc1);
-        addLocationObjectToJSON(loc2);
+       // addLocationObjectToJSON(loc2);
         System.out.println(readLocationFromJSON());
 
     }
 
+    static Gson gson = new Gson();
+    static final String FILE_PATH = "src/main/resources/locations.json";
 
     public static void addLocationObjectToJSON(Location location) {
-        Gson gson = new GsonBuilder().create();
-        try (FileWriter writer = new FileWriter("src/main/resources/locations.json")) {
-            gson.toJson(location, writer);
+        try (PrintWriter writer = new PrintWriter(FILE_PATH)) {
+            writer.println(gson.toJson(location));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public static Location readLocationFromJSON() {
-        Gson gson = new Gson();
         Location location = new Location();
-        try (Reader reader = new FileReader("src/main/resources/locations.json")) {
+        try (Reader reader = new FileReader(FILE_PATH)) {
             location = gson.fromJson(reader, Location.class);
             return location;
         } catch (IOException e ) {
