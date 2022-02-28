@@ -16,6 +16,9 @@ public class Location {
         this.coordinates = coordinates;
     }
 
+    public Location() {
+    }
+
     public String getId() {
         return id;
     }
