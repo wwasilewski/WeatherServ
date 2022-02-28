@@ -60,7 +60,7 @@ public class Weather {
 
     @Override
     public int hashCode() {
-        return Objects.hash(getTemp, getPressure(), getHumidity(), getWind());
+        return Objects.hash(getTemp(), getPressure(), getHumidity(), getWind());
     }
 
     @Override
