@@ -9,6 +9,7 @@ public class Location {
     private String region;
     private String countryName;
     private Coord coordinates;
+    private Weather main;
 
     public Location(String region, String countryName, Coord coordinates) {
         this.region = region;
@@ -44,6 +45,14 @@ public class Location {
         this.coordinates = coordinates;
     }
 
+    public Weather getMain() {
+        return main;
+    }
+
+    public void setMain(Weather main) {
+        this.main = main;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -51,11 +60,23 @@ public class Location {
         Location location = (Location) o;
         return Objects.equals(getId(), location.getId()) && Objects.equals(getRegion(),
                 location.getRegion()) && Objects.equals(getCountryName(), location.getCountryName())
-                && Objects.equals(getCoordinates(), location.getCoordinates());
+                && Objects.equals(getCoordinates(), location.getCoordinates())
+                && Objects.equals(getMain(), location.getMain());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getRegion(), getCountryName(), getCoordinates());
+        return Objects.hash(getId(), getRegion(), getCountryName(), getCoordinates(), getMain());
+    }
+
+    @Override
+    public String toString() {
+        return "Location{" +
+                "id='" + id + '\'' +
+                ", region='" + region + '\'' +
+                ", countryName='" + countryName + '\'' +
+                ", coordinates=" + coordinates +
+                ", main=" + main +
+                '}';
     }
 }
