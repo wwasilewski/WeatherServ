@@ -13,12 +13,14 @@ import java.net.http.HttpResponse;
 
 public class APIWeatherReader {
 
-    public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
-        System.out.println(APIWeatherReader());
+    public static String createAPICall(Location location) {
+        String lat = String.valueOf(location.getCoord().getLat());
+        String lon = String.valueOf(location.getCoord().getLon());
+        return "https://api.openweathermap.org/data/2.5/onecall?lat=".concat(lat).concat("&lon=").concat(lon).concat("&exclude=minutely,hourly,alerts&units=metric&appid=63cbd02cf64d7539e73a894b9ce3f787");
     }
 
-    public static OpenWeatherObject APIWeatherReader() throws URISyntaxException, IOException, InterruptedException {
-    URI uri = new URI("https://api.openweathermap.org/data/2.5/onecall?lat=33.44&lon=-94.04&exclude=minutely,hourly,alerts&units=metric&appid=63cbd02cf64d7539e73a894b9ce3f787");
+    public static OpenWeatherObject APIWeatherReader(Location location) throws URISyntaxException, IOException, InterruptedException {
+    URI uri = new URI(createAPICall(location));
     HttpRequest request = HttpRequest.newBuilder()
             .GET()
             .uri(uri)
