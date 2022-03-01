@@ -19,6 +19,9 @@ public class Location {
         this.coord = coord;
     }
 
+    public Location() {
+    }
+
     public String getId() {
         return id;
     }
