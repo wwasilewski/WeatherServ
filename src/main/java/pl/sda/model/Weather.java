@@ -9,6 +9,9 @@ public class Weather {
     private int humidity;
     private Wind wind;
 
+    public Weather() {
+    }
+
     public Weather(float temp, float pressure, int humidity, Wind wind) {
         this.temp = temp;
         this.pressure = pressure;
