@@ -1,6 +1,8 @@
 package pl.sda.service;
 
 import com.google.gson.Gson;
+import pl.sda.model.Coord;
+import pl.sda.model.Location;
 import pl.sda.model.Weather;
 import pl.sda.model.Wind;
 import pl.sda.model.openWeatherAPI.OpenWeatherObject;
@@ -18,7 +20,11 @@ public class WeatherService {
 
     public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
 
-        OpenWeatherObject openWeatherObject = APIWeatherReader.APIWeatherReader();
+
+        Coord coord = new Coord(50,50);
+        Location loc1 = new Location("test", "reg","pol",coord);
+
+        OpenWeatherObject openWeatherObject = APIWeatherReader.APIWeatherReader(loc1);
 
         Weather weather1 = readWeatherForSpecificDay(openWeatherObject, 3);
         Weather weather2 = readWeatherForSpecificDay(openWeatherObject, 5);
