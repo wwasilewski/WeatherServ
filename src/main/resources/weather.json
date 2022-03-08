@@ -4,3 +4,5 @@
 {"temp":10.19,"pressure":1021.0,"humidity":49,"wind":{"speed":5.0,"deg":54.0}}
 {"temp":17.58,"pressure":1013.0,"humidity":47,"wind":{"speed":4.05,"deg":217.0}}
 {"temp":20.65,"pressure":1016.0,"humidity":88,"wind":{"speed":7.77,"deg":180.0}}
+{"location":{"id":"1e734e10-7e23-40d7-a068-fedabe98c9b1","name":"name","region":"region","country":"country","coord":{"lon":33.44,"lat":-94.04},"main":{"temp":15.91,"pressure":1015.0,"humidity":55,"wind":{"speed":8.87,"deg":352.0}}},"timestamp":1647021600}
+{"location":{"id":"1a355324-2c3c-479e-92af-4bd9948cc5b0","name":"name","region":"region","country":"country","coord":{"lon":33.44,"lat":-94.04},"main":{"temp":15.91,"pressure":1015.0,"humidity":55,"wind":{"speed":8.87,"deg":352.0}}},"timestamp":1647021600}
