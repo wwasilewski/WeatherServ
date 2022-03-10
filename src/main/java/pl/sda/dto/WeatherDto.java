@@ -1,82 +1,29 @@
 package pl.sda.dto;
 
-import pl.sda.model.Wind;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class WeatherDto {
 
     private float temp;
     private float pressure;
     private int humidity;
-    private Wind wind;
-    private LocalDateTime date;
+    private float windSpeed; //wind speed
+    private float windDeg; //wind direction
+    private LocalDateTime date; // na razie zostawiłem, potem jak będzie wiadomo co to jest to
+                                // usuniemy albo dodamy do konstruktora
 
-    public WeatherDto() {
-    }
-
-    public WeatherDto(float temp, float pressure, int humidity, Wind wind) {
+    public WeatherDto(float temp, float pressure, int humidity, float windSpeed, float windDeg) {
         this.temp = temp;
         this.pressure = pressure;
         this.humidity = humidity;
-        this.wind = wind;
-    }
-
-    public float getTemp() {
-        return temp;
-    }
-
-    public void setTemp(float temp) {
-        this.temp = temp;
-    }
-
-    public float getPressure() {
-        return pressure;
-    }
-
-    public void setPressure(float pressure) {
-        this.pressure = pressure;
-    }
-
-    public int getHumidity() {
-        return humidity;
-    }
-
-    public void setHumidity(int humidity) {
-        this.humidity = humidity;
-    }
-
-    public Wind getWind() {
-        return wind;
-    }
-
-    public void setWind(Wind wind) {
-        this.wind = wind;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        WeatherDto weather = (WeatherDto) o;
-        return Float.compare(weather.getTemp(), getTemp()) == 0
-                && Float.compare(weather.getPressure(), getPressure()) == 0
-                && getHumidity() == weather.getHumidity() && Objects.equals(getWind(), weather.getWind());
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(getTemp(), getPressure(), getHumidity(), getWind());
-    }
-
-    @Override
-    public String toString() {
-        return "Weather{" +
-                "temperature=" + temp +
-                ", pressure=" + pressure +
-                ", humidity=" + humidity +
-                ", wind=" + wind +
-                '}';
+        this.windSpeed = windSpeed;
+        this.windDeg = windDeg;
     }
 }

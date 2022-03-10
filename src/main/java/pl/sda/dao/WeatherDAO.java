@@ -1,6 +1,5 @@
 package pl.sda.dao;
 
-import pl.sda.model.DateWeather;
 import pl.sda.model.Location;
 import pl.sda.model.Weather;
 
