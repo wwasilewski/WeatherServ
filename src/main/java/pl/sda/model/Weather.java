@@ -4,11 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.UUID;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Weather {
 
+    private String id = UUID.randomUUID().toString();
     private float temp;
     private float pressure;
     private int humidity;

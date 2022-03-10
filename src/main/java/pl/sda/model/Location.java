@@ -15,11 +15,11 @@ public class Location {
     private String name;
     private String region;
     private String country;
-    private long longitude;
-    private long latitude;
+    private float longitude;
+    private float latitude;
     private Weather main;
 
-    public Location(String name, String region, String country, long longitude, long latitude) {
+    public Location(String name, String region, String country, float longitude, float latitude) {
         this.name = name;
         this.region = region;
         this.country = country;
