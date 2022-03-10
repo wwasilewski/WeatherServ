@@ -1,6 +1,5 @@
 package pl.sda.model.openWeatherAPI;
 
-import java.time.LocalDateTime;
 
 public class Daily {
     private long dt;
