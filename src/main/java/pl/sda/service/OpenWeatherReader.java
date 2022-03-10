@@ -1,7 +1,6 @@
 package pl.sda.service;
 
 import com.google.gson.Gson;
-import pl.sda.model.DateWeather;
 import pl.sda.model.Location;
 import pl.sda.model.openWeatherAPI.OpenWeatherObject;
 
@@ -15,8 +14,8 @@ import java.net.http.HttpResponse;
 public class OpenWeatherReader{
 
     public static String createAPICall(Location location) {
-        String lat = String.valueOf(location.getCoord().getLat());
-        String lon = String.valueOf(location.getCoord().getLon());
+        String lat = String.valueOf(location.getLatitude());
+        String lon = String.valueOf(location.getLongitude());
         return "https://api.openweathermap.org/data/2.5/onecall?lat=".concat(lat).concat("&lon=").concat(lon).concat("&exclude=minutely,hourly,alerts&units=metric&appid=63cbd02cf64d7539e73a894b9ce3f787");
     }
 
