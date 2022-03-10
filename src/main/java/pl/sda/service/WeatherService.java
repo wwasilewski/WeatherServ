@@ -71,16 +71,19 @@ public class WeatherService {
             weather.setHumidity(openWeatherObject.getDaily()[dayOfForecast].getHumidity());
             weather.setWind(new Wind(openWeatherObject.getDaily()[dayOfForecast].getWind_speed(),
                     openWeatherObject.getDaily()[dayOfForecast].getWind_deg()));
+
+            result.setTimestamp(openWeatherObject.getDaily()[dayOfForecast].getDt());
         } else {
             weather.setTemp(openWeatherObject.getDaily()[FORECAST_FOR_TOMORROW].getTemp().getDay());
             weather.setPressure(openWeatherObject.getDaily()[FORECAST_FOR_TOMORROW].getPressure());
             weather.setHumidity(openWeatherObject.getDaily()[FORECAST_FOR_TOMORROW].getHumidity());
             weather.setWind(new Wind(openWeatherObject.getDaily()[FORECAST_FOR_TOMORROW].getWind_speed(),
                     openWeatherObject.getDaily()[FORECAST_FOR_TOMORROW].getWind_deg()));
+
+            result.setTimestamp(openWeatherObject.getDaily()[FORECAST_FOR_TOMORROW].getDt());
         }
         location.setMain(weather);
         result.setLocation(location);
-        result.setTimestamp(openWeatherObject.getDaily()[dayOfForecast].getDt());
 
         return result;
     }
