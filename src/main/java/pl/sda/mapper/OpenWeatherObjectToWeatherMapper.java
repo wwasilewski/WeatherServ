@@ -1,7 +1,6 @@
 package pl.sda.mapper;
 
 import pl.sda.model.Weather;
-import pl.sda.model.Wind;
 import pl.sda.model.openWeatherAPI.OpenWeatherObject;
 
 public class OpenWeatherObjectToWeatherMapper {
@@ -16,14 +15,14 @@ public class OpenWeatherObjectToWeatherMapper {
             result.setTemp(weatherObject.getDaily()[dayOfForecast].getTemp().getDay());
             result.setPressure(weatherObject.getDaily()[dayOfForecast].getPressure());
             result.setHumidity(weatherObject.getDaily()[dayOfForecast].getHumidity());
-            result.setWind(new Wind(weatherObject.getDaily()[dayOfForecast].getWind_speed(),
-                    weatherObject.getDaily()[dayOfForecast].getWind_deg()));
+            result.setWindSpeed(weatherObject.getDaily()[dayOfForecast].getWind_speed());
+            result.setWindDeg(weatherObject.getDaily()[dayOfForecast].getWind_deg());
         } else {
             result.setTemp(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getTemp().getDay());
             result.setPressure(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getPressure());
             result.setHumidity(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getHumidity());
-            result.setWind(new Wind(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getWind_speed(),
-                    weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getWind_deg()));
+            result.setWindSpeed(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getWind_speed());
+            result.setWindDeg(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getWind_deg());
         }
         return result;
     }

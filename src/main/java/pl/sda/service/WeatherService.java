@@ -1,7 +1,7 @@
 package pl.sda.service;
 
 import com.google.gson.Gson;
-import pl.sda.dto.DateWeatherDto;
+import pl.sda.dto.WeatherDto;
 import pl.sda.model.Weather;
 
 import java.io.IOException;
@@ -23,7 +23,7 @@ public class WeatherService {
         }
     }
 
-    public DateWeatherDto getWeatherForLocation(String locationName, String date) {
+    public WeatherDto getWeatherForLocation(String locationName, String date) {
         // przy pomocy OpenWeatherReader pobieramy najnowsze dane dla lokalizacji i danej daty
         // Weatherapireader -> dostaniecie OpenWeatherObject
 
@@ -37,6 +37,6 @@ public class WeatherService {
         // następnie trzeba przygotować obiekty Weather i Location do wyświetlenia na GUI
         // najlepiej w formie DTO i tutaj trzeba poprzez mappery upchąć tylko to co faktyczni jest niezbędne na GUI
 
-        return null;;
+        return null;
     }
 }
