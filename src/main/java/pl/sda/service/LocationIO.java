@@ -2,7 +2,6 @@ package pl.sda.service;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import pl.sda.model.Coord;
 import pl.sda.model.Location;
 
 import java.io.*;
