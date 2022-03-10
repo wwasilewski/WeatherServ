@@ -1,20 +1,22 @@
-package pl.sda.model;
+package pl.sda.dto;
 
+import pl.sda.model.Wind;
+
+import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Weather {
+public class WeatherDto {
 
     private float temp;
     private float pressure;
     private int humidity;
     private Wind wind;
+    private LocalDateTime date;
 
-    private Location location;
-
-    public Weather() {
+    public WeatherDto() {
     }
 
-    public Weather(float temp, float pressure, int humidity, Wind wind) {
+    public WeatherDto(float temp, float pressure, int humidity, Wind wind) {
         this.temp = temp;
         this.pressure = pressure;
         this.humidity = humidity;
@@ -57,7 +59,7 @@ public class Weather {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Weather weather = (Weather) o;
+        WeatherDto weather = (WeatherDto) o;
         return Float.compare(weather.getTemp(), getTemp()) == 0
                 && Float.compare(weather.getPressure(), getPressure()) == 0
                 && getHumidity() == weather.getHumidity() && Objects.equals(getWind(), weather.getWind());

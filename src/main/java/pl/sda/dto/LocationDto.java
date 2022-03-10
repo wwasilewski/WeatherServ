@@ -1,26 +1,28 @@
-package pl.sda.model;
+package pl.sda.dto;
+
+import pl.sda.model.Coord;
+import pl.sda.model.Weather;
 
 import java.util.Objects;
 import java.util.UUID;
 
-public class Location {
+public class LocationDto {
 
     private String id = UUID.randomUUID().toString();
     private String name;
     private String region;
     private String country;
     private Coord coord;
-    // potencjalnie do usunięcia
     private Weather main;
 
-    public Location(String name, String region, String country, Coord coord) {
+    public LocationDto(String name, String region, String country, Coord coord) {
         this.name = name;
         this.region = region;
         this.country = country;
         this.coord = coord;
     }
 
-    public Location() {
+    public LocationDto() {
     }
 
     public String getId() {
@@ -71,7 +73,7 @@ public class Location {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Location location = (Location) o;
+        LocationDto location = (LocationDto) o;
         return Objects.equals(getId(), location.getId()) && Objects.equals(getName(), location.getName())
                 && Objects.equals(getRegion(), location.getRegion()) && Objects.equals(getCountry(),
                 location.getCountry()) && Objects.equals(getCoord(), location.getCoord())
