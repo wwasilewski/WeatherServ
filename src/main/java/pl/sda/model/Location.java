@@ -17,13 +17,4 @@ public class Location {
     private String country;
     private float longitude;
     private float latitude;
-    private Weather main;
-
-    public Location(String name, String region, String country, float longitude, float latitude) {
-        this.name = name;
-        this.region = region;
-        this.country = country;
-        this.longitude = longitude;
-        this.latitude = latitude;
-    }
 }
