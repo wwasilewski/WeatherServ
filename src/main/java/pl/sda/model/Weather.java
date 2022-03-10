@@ -17,4 +17,5 @@ public class Weather {
     private int humidity;
     private float windSpeed; //wind speed
     private float windDeg; //wind direction
+    private long timestamp;
 }
