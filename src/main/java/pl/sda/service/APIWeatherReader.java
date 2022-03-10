@@ -23,6 +23,7 @@ public class APIWeatherReader<T> {
 //        HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
 //        Gson mapper = new Gson();
 //        return mapper.fromJson(response.body(),);
+    //
 //    }
 }
 
