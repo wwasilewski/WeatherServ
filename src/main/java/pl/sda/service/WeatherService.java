@@ -1,10 +1,9 @@
 package pl.sda.service;
 
 import com.google.gson.Gson;
-import pl.sda.model.Coord;
+
 import pl.sda.model.Location;
 import pl.sda.model.Weather;
-import pl.sda.model.Wind;
 import pl.sda.model.openWeatherAPI.OpenWeatherObject;
 
 import java.io.IOException;
@@ -26,14 +25,14 @@ public class WeatherService {
             result.setTemp(weatherObject.getDaily()[dayOfForecast].getTemp().getDay());
             result.setPressure(weatherObject.getDaily()[dayOfForecast].getPressure());
             result.setHumidity(weatherObject.getDaily()[dayOfForecast].getHumidity());
-            result.setWind(new Wind(weatherObject.getDaily()[dayOfForecast].getWind_speed(),
-                    weatherObject.getDaily()[dayOfForecast].getWind_deg()));
+            result.setWindSpeed(weatherObject.getDaily()[dayOfForecast].getWind_speed());
+            result.setWindDeg(weatherObject.getDaily()[dayOfForecast].getWind_deg());
         } else {
             result.setTemp(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getTemp().getDay());
             result.setPressure(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getPressure());
             result.setHumidity(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getHumidity());
-            result.setWind(new Wind(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getWind_speed(),
-                    weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getWind_deg()));
+            result.setWindDeg(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getWind_speed());
+            result.setWindDeg(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getWind_deg());
         }
         return result;
     }
