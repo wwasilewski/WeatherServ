@@ -11,6 +11,7 @@ public class OpenWeatherObjectToWeatherMapper {
     public static Weather readWeatherForSpecificDay(OpenWeatherObject weatherObject, int dayOfForecast) {
         Weather result = new Weather();
 
+        // tutaj uzupełniłbym dane równiez daty
         if (dayOfForecast >= 0 && dayOfForecast <= 7) {
             result.setTemp(weatherObject.getDaily()[dayOfForecast].getTemp().getDay());
             result.setPressure(weatherObject.getDaily()[dayOfForecast].getPressure());
