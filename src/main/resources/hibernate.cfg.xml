@@ -60,11 +60,8 @@
               Adnotacje:
         -->
 
-        <!--        <mapping class="com.sda.hibernate.commons.entity.Country"/>-->
-        <!--        <mapping class="com.sda.hibernate.commons.entity.Genre"/>-->
-        <!--        <mapping class="com.sda.hibernate.commons.entity.Movie"/>-->
-        <!--        <mapping class="com.sda.hibernate.commons.entity.Person"/>-->
-        <!--        <mapping class="com.sda.hibernate.commons.entity.Roles"/>-->
-        <!--        <mapping class="com.sda.hibernate.commons.entity.PersonMovie"/>-->
+        <mapping class="pl.sda.model.Location"/>
+        <mapping class="pl.sda.model.Weather"/>
+
     </session-factory>
 </hibernate-configuration>

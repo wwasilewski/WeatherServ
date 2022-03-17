@@ -5,7 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -19,7 +18,7 @@ public class Weather {
     @Column(name = "weather_id")
     private Integer id;
 
-    @Column(name = "temp")
+    @Column(name = "temperature")
     private float temp;
 
     @Column(name = "pressure")
@@ -36,4 +35,9 @@ public class Weather {
 
     @Column(name = "timestamp")
     private long timestamp;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "location_id")
+    private Location location;
+
 }

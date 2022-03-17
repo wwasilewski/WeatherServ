@@ -18,7 +18,7 @@ public class LocationDAO {
         Transaction transaction = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            transaction = session.getTransaction();
+            transaction = session.beginTransaction();
             session.save(location);
             transaction.commit();
         } catch (HibernateException e) {
