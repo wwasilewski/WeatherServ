@@ -27,6 +27,11 @@
             postgres
         </property>
 
+        <!-- creating/updating tables in database -->
+        <property name="hibernate.hbm2ddl.auto">
+            create
+        </property>
+
         <!--
             Właściwość, która pozwala logować zapytania, które zostały wykonane na bazie danych.
             To bardzo ważna opcja. Należy pamiętać żeby weryfikować czy zapytanie, które jest generowane
@@ -55,13 +60,11 @@
               Adnotacje:
         -->
 
-<!--        <mapping resource="mappings/Genre.hbm.xml"></mapping>-->
-
-<!--        <mapping class="com.sda.hibernate.commons.entity.Country"/>-->
-<!--        <mapping class="com.sda.hibernate.commons.entity.Genre"/>-->
-<!--        <mapping class="com.sda.hibernate.commons.entity.Movie"/>-->
-<!--        <mapping class="com.sda.hibernate.commons.entity.Person"/>-->
-<!--        <mapping class="com.sda.hibernate.commons.entity.Roles"/>-->
-<!--        <mapping class="com.sda.hibernate.commons.entity.PersonMovie"/>-->
+        <!--        <mapping class="com.sda.hibernate.commons.entity.Country"/>-->
+        <!--        <mapping class="com.sda.hibernate.commons.entity.Genre"/>-->
+        <!--        <mapping class="com.sda.hibernate.commons.entity.Movie"/>-->
+        <!--        <mapping class="com.sda.hibernate.commons.entity.Person"/>-->
+        <!--        <mapping class="com.sda.hibernate.commons.entity.Roles"/>-->
+        <!--        <mapping class="com.sda.hibernate.commons.entity.PersonMovie"/>-->
     </session-factory>
 </hibernate-configuration>
