@@ -4,17 +4,37 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.UUID;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Entity
+@Table(name = "locations")
 public class Location {
 
-    private String id = UUID.randomUUID().toString();
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "location_id")
+    private Integer id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "region")
     private String region;
+
+    @Column(name = "country")
     private String country;
+
+    @Column(name = "longitude")
     private float longitude;
+
+    @Column(name = "latitude")
     private float latitude;
+
+    @OneToMany(mappedBy = "location")
+    private List<Weather> weather;
+
 }
