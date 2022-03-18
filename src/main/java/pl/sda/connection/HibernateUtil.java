@@ -1,12 +1,11 @@
 package pl.sda.connection;
 
+import lombok.extern.slf4j.Slf4j;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
+@Slf4j
 public class HibernateUtil {
-    private static final Logger logger = LogManager.getLogger(HibernateUtil.class);
 
     private static final SessionFactory sessionFactory = buildSessionFactory();
 
@@ -14,7 +13,7 @@ public class HibernateUtil {
         try {
             return new Configuration().configure().buildSessionFactory();
         } catch (Throwable ex) {
-            logger.error("Initial SessionFactory creation failed.", ex);
+            log.error("Initial SessionFactory creation failed.", ex);
             throw new ExceptionInInitializerError(ex);
         }
     }
