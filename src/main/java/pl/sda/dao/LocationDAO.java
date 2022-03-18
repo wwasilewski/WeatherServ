@@ -58,13 +58,13 @@ public class LocationDAO {
     }
 
     public List<Location> findAllLocations() {
-        List<Location> movies = new ArrayList<>();
+        List<Location> locations = new ArrayList<>();
         Transaction transaction = null;
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
-            movies = session.createQuery("SELECT m FROM Location m").getResultList();
+            locations = session.createQuery("SELECT m FROM Location m").getResultList();
 
             transaction.commit();
         } catch (HibernateException e) {
@@ -73,6 +73,6 @@ public class LocationDAO {
             }
             log.error(e.getMessage(), e);
         }
-        return movies;
+        return locations;
     }
 }

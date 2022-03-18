@@ -1,5 +1,6 @@
 package pl.sda.model;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,12 +21,14 @@ public class Location {
     private Integer id;
 
     @Column(name = "name")
+    @NotEmpty
     private String name;
 
     @Column(name = "region")
     private String region;
 
     @Column(name = "country")
+    @NotEmpty
     private String country;
 
     @Column(name = "longitude")

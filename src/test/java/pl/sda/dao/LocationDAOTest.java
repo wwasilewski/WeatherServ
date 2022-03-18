@@ -31,6 +31,11 @@ class LocationDAOTest {
 
     @Test
     void doNotSaveLocationIfCityNameIsEmpty() {
+        Location location = new Location();
+        location.setCountry("PL");
+        locationDAO.saveLocation(location);
+        List<Location> allLocations = locationDAO.findAllLocations();
+        assertThat(allLocations).isEmpty();
     }
 
     @Test
@@ -45,9 +50,6 @@ class LocationDAOTest {
     void doNotSaveLocationIfCoordinatesAreIncorrect() {
     }
 
-    @Test
-    void saveLocationIfInputIsCorrect() {
-    }
 
     @Test
     void findAllLocationsEmptyList() {
