@@ -41,7 +41,7 @@
         </File>
     </Appenders>
     <Loggers>
-        <Root level="ALL">
+        <Root level="warn">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="HtmlFile"/>
             <AppenderRef level="ERROR" ref="ErrorFile"/>

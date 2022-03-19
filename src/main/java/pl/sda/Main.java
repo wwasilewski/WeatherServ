@@ -1,12 +1,16 @@
 package pl.sda;
 
 import pl.sda.dao.LocationDAO;
+import pl.sda.dao.WeatherDAO;
 import pl.sda.model.Location;
 import pl.sda.model.Weather;
 import pl.sda.view.UserInterface;
 
+import java.io.IOException;
+import java.net.URISyntaxException;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
 //        UserInterface.showMenu();
 
         LocationDAO locationDAO = new LocationDAO();
@@ -16,8 +20,8 @@ public class Main {
         l1.setName("imie1");
         l1.setRegion("region1");
         l1.setCountry("kraj1");
-        l1.setLongitude(11.11f);
-        l1.setLatitude(111.11f);
+        l1.setLongitude(-94.04f);
+        l1.setLatitude(33.44f);
 
         locationDAO.saveLocation(l1);
 
@@ -41,5 +45,18 @@ public class Main {
 
         locationDAO.saveLocation(l3);
 
+        WeatherDAO weatherDAO = new WeatherDAO();
+        weatherDAO.save(l1,5);
+
+//        Location location = new Location();
+//        location.setName("name");
+//        location.setCountry("country");
+//        location.setRegion("region");
+//
+//
+//        location.setLongitude(-94.04f);
+//        location.setLatitude(33.44f);
+
+//        weatherDAO.save(location,5);
     }
 }
