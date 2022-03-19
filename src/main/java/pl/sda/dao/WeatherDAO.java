@@ -13,6 +13,8 @@ import pl.sda.service.OpenWeatherReader;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
+import java.util.List;
 
 @Slf4j
 public class WeatherDAO {
@@ -47,6 +49,50 @@ public class WeatherDAO {
             }
         }
     }
+
+    public Weather findWeatherById(Integer id) {
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            Weather weather = session.get(Weather.class, id);
+
+            transaction.commit();
+
+            return weather;
+
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+
+                log.error(e.getMessage(), e);
+            }
+        }
+        return null;
+    }
+
+    public List<Weather> findAllWeathers() {
+        List<Weather> result = new ArrayList<>();
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            result = session.createQuery("SELECT n FROM Weather AS n", Weather.class)
+                    .getResultList();
+
+            transaction.commit();
+
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+
+                log.error(e.getMessage(), e);
+            }
+        }
+        return result;
+    }
+
+
 }
-
-

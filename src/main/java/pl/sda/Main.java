@@ -8,6 +8,7 @@ import pl.sda.view.UserInterface;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args) throws URISyntaxException, IOException, InterruptedException {
@@ -45,18 +46,8 @@ public class Main {
 
         locationDAO.saveLocation(l3);
 
-        WeatherDAO weatherDAO = new WeatherDAO();
-        weatherDAO.save(l1,5);
+        WeatherDAO w1 = new WeatherDAO();
+        w1.save(l1, 5);
 
-//        Location location = new Location();
-//        location.setName("name");
-//        location.setCountry("country");
-//        location.setRegion("region");
-//
-//
-//        location.setLongitude(-94.04f);
-//        location.setLatitude(33.44f);
-
-//        weatherDAO.save(location,5);
     }
 }
