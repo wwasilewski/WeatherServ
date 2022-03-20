@@ -40,14 +40,35 @@ class LocationDAOTest {
 
     @Test
     void doNotSaveLocationIfCountryNameIsEmpty() {
+        Location location = new Location();
+        location.setName("Warsaw");
+        locationDAO.saveLocation(location);
+        List<Location> allLocations = locationDAO.findAllLocations();
+        assertThat(allLocations).isEmpty();
     }
 
     @Test
     void saveLocationIfRegionIsNull() {
+        Location location = new Location();
+        location.setName("Warsaw");
+        location.setCountry("PL");
+        locationDAO.saveLocation(location);
+        Location result = locationDAO.findByName("Warsaw");
+        assertThat(location.getId()).isEqualTo(result.getId());
     }
 
     @Test
     void doNotSaveLocationIfCoordinatesAreIncorrect() {
+        float latitude = 1000;
+        float longitude = 1000;
+        Location location = new Location();
+        location.setName("Warsaw");
+        location.setCountry("PL");
+        location.setLongitude(longitude);
+        location.setLatitude(latitude);
+        locationDAO.saveLocation(location);
+        List<Location> allLocations = locationDAO.findAllLocations();
+        assertThat(allLocations).isEmpty();
     }
 
 
