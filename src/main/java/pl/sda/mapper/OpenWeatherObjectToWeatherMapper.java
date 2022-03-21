@@ -12,20 +12,19 @@ public class OpenWeatherObjectToWeatherMapper {
 
         // tutaj uzupełniłbym dane równiez daty - ZROBIONE
         if (dayOfForecast >= 0 && dayOfForecast <= 7) {
-            result.setTemp(weatherObject.getDaily()[dayOfForecast].getTemp().getDay());
-            result.setPressure(weatherObject.getDaily()[dayOfForecast].getPressure());
-            result.setHumidity(weatherObject.getDaily()[dayOfForecast].getHumidity());
-            result.setWindSpeed(weatherObject.getDaily()[dayOfForecast].getWind_speed());
-            result.setWindDeg(weatherObject.getDaily()[dayOfForecast].getWind_deg());
-            result.setTimestamp(weatherObject.getDaily()[dayOfForecast].getDt());
+            mapApiCallToWeatherObject(weatherObject, dayOfForecast, result);
         } else {
-            result.setTemp(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getTemp().getDay());
-            result.setPressure(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getPressure());
-            result.setHumidity(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getHumidity());
-            result.setWindSpeed(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getWind_speed());
-            result.setWindDeg(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getWind_deg());
-            result.setTimestamp(weatherObject.getDaily()[FORECAST_FOR_TOMORROW].getDt());
+            mapApiCallToWeatherObject(weatherObject, FORECAST_FOR_TOMORROW, result);
         }
         return result;
+    }
+
+    private static void mapApiCallToWeatherObject(OpenWeatherObject weatherObject, int dayOfForecast, Weather result) {
+        result.setTemp(weatherObject.getDaily()[dayOfForecast].getTemp().getDay());
+        result.setPressure(weatherObject.getDaily()[dayOfForecast].getPressure());
+        result.setHumidity(weatherObject.getDaily()[dayOfForecast].getHumidity());
+        result.setWindSpeed(weatherObject.getDaily()[dayOfForecast].getWind_speed());
+        result.setWindDeg(weatherObject.getDaily()[dayOfForecast].getWind_deg());
+        result.setTimestamp(weatherObject.getDaily()[dayOfForecast].getDt());
     }
 }
