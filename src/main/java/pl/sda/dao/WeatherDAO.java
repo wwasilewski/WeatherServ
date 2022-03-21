@@ -84,7 +84,7 @@ public class WeatherDAO {
 
             result = session.createNativeQuery("""
                             SELECT * FROM weathers JOIN locations USING (location_id)
-                            WHERE city_name = :name""", Weather.class)
+                            WHERE name = :name""", Weather.class)
                     .setParameter("name", city)
                     .getResultList();
 
