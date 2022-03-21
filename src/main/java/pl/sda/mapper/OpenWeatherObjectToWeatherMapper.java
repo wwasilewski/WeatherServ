@@ -10,7 +10,7 @@ public class OpenWeatherObjectToWeatherMapper {
     public static Weather readWeatherForSpecificDay(OpenWeatherObject weatherObject, int dayOfForecast) {
         Weather result = new Weather();
 
-        // tutaj uzupełniłbym dane równiez daty
+        // tutaj uzupełniłbym dane równiez daty - ZROBIONE
         if (dayOfForecast >= 0 && dayOfForecast <= 7) {
             mapApiCallToWeatherObject(weatherObject, dayOfForecast, result);
         } else {
@@ -25,5 +25,6 @@ public class OpenWeatherObjectToWeatherMapper {
         result.setHumidity(weatherObject.getDaily()[dayOfForecast].getHumidity());
         result.setWindSpeed(weatherObject.getDaily()[dayOfForecast].getWind_speed());
         result.setWindDeg(weatherObject.getDaily()[dayOfForecast].getWind_deg());
+        result.setTimestamp(weatherObject.getDaily()[dayOfForecast].getDt());
     }
 }

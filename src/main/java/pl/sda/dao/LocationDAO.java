@@ -14,8 +14,6 @@ import java.util.Optional;
 @Slf4j
 public class LocationDAO {
 
-
-
     public Location findByName(String name) {
         Transaction transaction = null;
 

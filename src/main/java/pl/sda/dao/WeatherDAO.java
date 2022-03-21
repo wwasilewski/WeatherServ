@@ -1,13 +1,102 @@
 package pl.sda.dao;
 
-import pl.sda.model.Location;
+import lombok.extern.slf4j.Slf4j;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+import pl.sda.connection.HibernateUtil;
 import pl.sda.model.Weather;
 
+import java.util.Collections;
+import java.util.List;
+
+@Slf4j
 public class WeatherDAO {
 
-    public void save(Weather weather, Location location){
-        //weather.setLocation(location);
+    public void save(Weather weather) {
+        Transaction transaction = null;
 
-        // tutaj logika Hibernate związana z zapisem  Weather
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            session.save(weather);
+            transaction.commit();
+
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+
+                log.error(e.getMessage(), e);
+            }
+        }
+    }
+
+    public Weather findWeatherById(Integer id) {
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            Weather weather = session.get(Weather.class, id);
+
+            transaction.commit();
+
+            return weather;
+
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+
+                log.error(e.getMessage(), e);
+            }
+        }
+        return null;
+    }
+
+    public List<Weather> findAllWeathers() {
+        Transaction transaction = null;
+        List<Weather> result = Collections.emptyList();
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            result = session.createQuery("SELECT n FROM Weather AS n", Weather.class)
+                    .getResultList();
+
+            transaction.commit();
+
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+
+                log.error(e.getMessage(), e);
+            }
+        }
+        return result;
+    }
+
+    public List<Weather> findWeathersByCity(String city) {
+        Transaction transaction = null;
+        List<Weather> result = Collections.emptyList();
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            result = session.createNativeQuery("""
+                            SELECT * FROM weathers JOIN locations USING (location_id)
+                            WHERE city_name = :name""", Weather.class)
+                    .setParameter("name", city)
+                    .getResultList();
+
+            transaction.commit();
+
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+
+                log.error(e.getMessage(), e);
+            }
+        }
+        return result;
     }
 }
