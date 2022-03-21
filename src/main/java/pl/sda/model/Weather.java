@@ -1,6 +1,7 @@
 package pl.sda.model;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "weathers")
+@Builder
 public class Weather {
 
     @Id
