@@ -63,23 +63,29 @@ public class LocationController {
         System.out.println("Please enter the longitude of the location. \n" +
                 "Use positive numbers [0 - 180] for East " +
                 "values and negative [-180 - 0] for West values.");
-        float longitude = sc.nextFloat();
-        if(longitude < -180 || longitude > 180) {
-            System.out.println("Please enter the number from the given range: from -180(for West) to 180(for East)");
-            getLongitude();
-        }
-        return longitude;
+        try {
+            float longitude = Float.parseFloat(sc.nextLine());
+            if (longitude < -180 || longitude > 180) {
+                System.out.println("Please enter the number from the given range: from -180(for West) to 180(for East)");
+                getLongitude();
+            }
+            return longitude;
+        } catch (NumberFormatException ignored) {}
+        return getLongitude();
     }
 
     private static float getLatitude() {
         System.out.println("Please enter the latitude of the location. \n" +
                 "Use positive numbers [0 - 90] for North " +
                 "values and negative [-90 - 0] for South values.");
-        float latitude = sc.nextFloat();
-        if(latitude < -90 || latitude > 90) {
-            System.out.println("Please enter the number from the given range: from -90(for South) to 90(for North)");
-            getLongitude();
-        }
-        return latitude;
+        try {
+            float latitude = Float.parseFloat(sc.nextLine());
+            if (latitude < -90 || latitude > 90) {
+                System.out.println("Please enter the number from the given range: from -90(for South) to 90(for North)");
+                getLatitude();
+            }
+            return latitude;
+        } catch (NumberFormatException ignored) {}
+        return getLatitude();
     }
 }
