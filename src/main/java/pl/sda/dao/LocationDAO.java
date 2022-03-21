@@ -7,10 +7,40 @@ import org.hibernate.Transaction;
 import pl.sda.connection.HibernateUtil;
 import pl.sda.model.Location;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Slf4j
 public class LocationDAO {
+
+
+
+    public Location findByName(String name) {
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            Optional<Location> result = session.createQuery("FROM Location l " +
+                    "WHERE l.name = :name").
+                    setParameter("name", name).
+                    uniqueResultOptional();
+
+            transaction.commit();
+
+            if(result.isPresent()) {
+                return (Location) result.get();
+            }
+            return null;
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            log.error(e.getMessage(), e);
+        }
+        return null;
+    }
 
     public void saveLocation(Location location) {
         Transaction transaction = null;
@@ -27,7 +57,22 @@ public class LocationDAO {
         }
     }
 
-    public static List<Location> showAllLocations() {
-        return null;
+    public List<Location> findAllLocations() {
+        List<Location> locations = new ArrayList<>();
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            locations = session.createQuery("SELECT m FROM Location m").getResultList();
+
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            log.error(e.getMessage(), e);
+        }
+        return locations;
     }
 }
