@@ -14,6 +14,8 @@ import pl.sda.service.OpenWeatherReader;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Slf4j
@@ -73,13 +75,41 @@ public class WeatherDAO {
     }
 
     public List<Weather> findAllWeathers() {
-        List<Weather> result = new ArrayList<>();
         Transaction transaction = null;
+        List<Weather> result = Collections.emptyList();
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
             result = session.createQuery("SELECT n FROM Weather AS n", Weather.class)
+                    .getResultList();
+
+            transaction.commit();
+
+        } catch (HibernateException e) {
+            if (transaction != null) {
+                transaction.rollback();
+
+                log.error(e.getMessage(), e);
+            }
+        }
+        return result;
+    }
+
+    public List<Weather> findWeathersByCity(String city) {
+        Transaction transaction = null;
+        List<Weather> result = Collections.emptyList();
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+
+            result = session.createNativeQuery("""
+                            SELECT *
+                            FROM weathers w
+                            JOIN locations l
+                            USING (location_id)
+                            WHERE city_name = :name""", Weather.class)
+                    .setParameter("name", city)
                     .getResultList();
 
             transaction.commit();

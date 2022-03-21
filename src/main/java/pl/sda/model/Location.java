@@ -19,7 +19,7 @@ public class Location {
     @Column(name = "location_id")
     private Integer id;
 
-    @Column(name = "name")
+    @Column(name = "city_name")
     private String name;
 
     @Column(name = "region")
