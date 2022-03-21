@@ -32,6 +32,7 @@ class LocationDAOTest {
     @Test
     void doNotSaveLocationIfCityNameIsEmpty() {
         Location location = new Location();
+        //location.setName("Not null name");
         location.setCountry("PL");
         locationDAO.saveLocation(location);
         List<Location> allLocations = locationDAO.findAllLocations();

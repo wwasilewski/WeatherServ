@@ -49,7 +49,7 @@ public class LocationDAO {
             transaction = session.beginTransaction();
             session.save(location);
             transaction.commit();
-        } catch (HibernateException e) {
+        } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }

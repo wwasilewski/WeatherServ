@@ -1,11 +1,15 @@
 package pl.sda.view;
 
+import pl.sda.controller.LocationController;
+
 import java.util.Scanner;
 
 public class UserInterface {
 
     private static final Scanner sc = new Scanner(System.in).useDelimiter("\n");
     private static String choice;
+    private static LocationController locationController = new LocationController();
+
 
     public static void showMenu() {
         do {
@@ -17,7 +21,7 @@ public class UserInterface {
             choice = sc.next();
 
             switch (choice) {
-                case "1" -> addLocation();
+                case "1" -> locationController.addLocation();
                 case "2" -> showAllLocations();
                 case "3" -> showWeather();
                 case "0" -> System.out.println("Good bye");
@@ -26,9 +30,7 @@ public class UserInterface {
         } while (!choice.equals("0"));
     }
 
-    // TODO
-    private static void addLocation() {
-    }
+
 
     // TODO
     private static void showAllLocations() {
