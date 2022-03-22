@@ -3,8 +3,9 @@ package pl.sda.mapper;
 import pl.sda.dto.LocationDto;
 import pl.sda.model.Location;
 
-public class LocationMapper {
+public class LocationMapper implements Mapper<LocationDto, Location> {
 
+    @Override
     public Location mapDtoToEntity(LocationDto locationDto) {
         return Location.builder()
                 .name(locationDto.getName())
@@ -15,6 +16,7 @@ public class LocationMapper {
                 .build();
     }
 
+    @Override
     public LocationDto mapEntityToDto(Location location) {
         return LocationDto.builder()
                 .name(location.getName())
@@ -24,6 +26,4 @@ public class LocationMapper {
                 .latitude(location.getLatitude())
                 .build();
     }
-
-
 }

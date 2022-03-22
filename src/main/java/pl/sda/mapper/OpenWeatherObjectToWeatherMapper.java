@@ -10,7 +10,6 @@ public class OpenWeatherObjectToWeatherMapper {
     public static Weather readWeatherForSpecificDay(OpenWeatherObject weatherObject, int dayOfForecast) {
         Weather result = new Weather();
 
-        // tutaj uzupełniłbym dane równiez daty - ZROBIONE
         if (dayOfForecast >= 0 && dayOfForecast <= 7) {
             mapApiCallToWeatherObject(weatherObject, dayOfForecast, result);
         } else {
