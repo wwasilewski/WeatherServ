@@ -20,18 +20,20 @@ public class WeatherService {
     private final WeatherDAO weatherDAO = new WeatherDAO();
     private final WeatherMapper weatherMapper = new WeatherMapper();
 
-    public void saveWeatherForLocationWithoutDay(String locationName) throws URISyntaxException, IOException, InterruptedException {
+    public WeatherDto saveWeatherForLocationWithoutDay(String locationName) throws URISyntaxException, IOException, InterruptedException {
         LocationDto location = locationService.findByName(locationName);
         OpenWeatherObject openWeatherObject = openWeatherReader.readWeather(location);
         Weather weather = OpenWeatherObjectToWeatherMapper.readWeatherForSpecificDay(openWeatherObject, 8);
         weatherDAO.save(weather);
+        return weatherMapper.mapEntityToDto(weather);
     }
 
-    public void saveWeatherForLocationForDefinedDay(String locationName, int dayOfForecast) throws URISyntaxException, IOException, InterruptedException {
+    public WeatherDto saveWeatherForLocationForDefinedDay(String locationName, int dayOfForecast) throws URISyntaxException, IOException, InterruptedException {
         LocationDto location = locationService.findByName(locationName);
         OpenWeatherObject openWeatherObject = openWeatherReader.readWeather(location);
         Weather weather = OpenWeatherObjectToWeatherMapper.readWeatherForSpecificDay(openWeatherObject, dayOfForecast);
         weatherDAO.save(weather);
+        return weatherMapper.mapEntityToDto(weather);
     }
 
     public List<WeatherDto> getWeatherForLocation(String locationName) {
@@ -42,15 +44,3 @@ public class WeatherService {
     }
 
 }
-// przy pomocy OpenWeatherReader pobieramy najnowsze dane dla lokalizacji i danej daty
-// Weatherapireader -> dostaniecie OpenWeatherObject
-
-// przy pomocy LocationDAO na podstawie nazwy lokalizacji możecie spróbować znaleźć ją w bazie
-// dostaniecie obiekt Location
-
-// przy pomocy Mappera uzyskacie obiekt Weather
-
-// przy pomocy WeatherDAO zapiszecie razem obiekt Weather i Location
-
-// następnie trzeba przygotować obiekty Weather i Location do wyświetlenia na GUI
-// najlepiej w formie DTO i tutaj trzeba poprzez mappery upchąć tylko to co faktyczni jest niezbędne na GUI
