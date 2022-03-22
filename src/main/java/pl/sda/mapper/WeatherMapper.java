@@ -3,8 +3,9 @@ package pl.sda.mapper;
 import pl.sda.dto.WeatherDto;
 import pl.sda.model.Weather;
 
-public class WeatherMapper {
+public class WeatherMapper implements Mapper<WeatherDto, Weather> {
 
+    @Override
     public WeatherDto mapEntityToDto(Weather weather) {
         return WeatherDto.builder()
                 .temp(weather.getTemp())
@@ -16,6 +17,7 @@ public class WeatherMapper {
                 .build();
     }
 
+    @Override
     public Weather mapDtoToEntity(WeatherDto weatherDto) {
         return Weather.builder()
                 .temp(weatherDto.getTemp())
