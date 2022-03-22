@@ -22,7 +22,7 @@ public class UserInterface {
 
             switch (choice) {
                 case "1" -> locationController.addLocation();
-                case "2" -> showAllLocations();
+                case "2" -> locationController.showAllLocations();
                 case "3" -> showWeather();
                 case "0" -> System.out.println("Good bye");
                 default -> System.out.println("Wrong input, pick again");
@@ -32,9 +32,6 @@ public class UserInterface {
 
 
 
-    // TODO
-    private static void showAllLocations() {
-    }
 
     // TODO
     private static void showWeather() {
