@@ -17,4 +17,14 @@ public class WeatherDto {
     private float windSpeed; //wind speed
     private float windDeg; //wind direction
     private long timestamp; //date
+
+    @Override
+    public String toString() {
+        return "\ttemperature= " + temp + "C" +
+                ", pressure=" + pressure + "hPa" +
+                ", humidity=" + humidity + "%" +
+                ", wind speed=" + windSpeed + "km/h" +
+                ", wind direction=" + windDeg + "deg" +
+                ", date=" + timestamp;
+    }
 }

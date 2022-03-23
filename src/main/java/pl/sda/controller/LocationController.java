@@ -2,6 +2,7 @@ package pl.sda.controller;
 
 import pl.sda.dto.LocationDto;
 import pl.sda.service.LocationService;
+import pl.sda.view.UserInterface;
 
 import java.util.Scanner;
 
@@ -36,8 +37,9 @@ public class LocationController {
     private static String getName() {
         System.out.println("Please enter the name of the location to add: ");
         String name = sc.nextLine();
-        if(name.isBlank()) {
+        if (name.isBlank()) {
             System.out.println("The name of the location can not be empty.");
+            backToMenu();
             getName();
         }
         return name;
@@ -52,8 +54,9 @@ public class LocationController {
     private static String getCountry() {
         System.out.println("Please enter the name of the country: ");
         String country = sc.nextLine();
-        if(country.isBlank()) {
+        if (country.isBlank()) {
             System.out.println("The country field can not be empty.");
+            backToMenu();
             getCountry();
         }
         return country;
@@ -67,10 +70,12 @@ public class LocationController {
             float longitude = Float.parseFloat(sc.nextLine());
             if (longitude < -180 || longitude > 180) {
                 System.out.println("Please enter the number from the given range: from -180(for West) to 180(for East)");
+                backToMenu();
                 getLongitude();
             }
             return longitude;
-        } catch (NumberFormatException ignored) {}
+        } catch (NumberFormatException ignored) {
+        }
         return getLongitude();
     }
 
@@ -82,10 +87,35 @@ public class LocationController {
             float latitude = Float.parseFloat(sc.nextLine());
             if (latitude < -90 || latitude > 90) {
                 System.out.println("Please enter the number from the given range: from -90(for South) to 90(for North)");
+                backToMenu();
                 getLatitude();
             }
             return latitude;
-        } catch (NumberFormatException ignored) {}
+        } catch (NumberFormatException ignored) {
+        }
         return getLatitude();
+    }
+
+    public void showAllLocations() {
+        locationService.findAllLocations()
+                .stream()
+                .map(LocationController::printLocationDto)
+                .forEach(System.out::println);
+    }
+
+    private static String printLocationDto(LocationDto locationDto) {
+        return " - " + locationDto.getName() + "\nRegion: " + locationDto.getRegion()
+                + "\nContry: " + locationDto.getCountry()
+                + "\n Coordinates:\n\t- longitude: " + locationDto.getLongitude()
+                + "\n\t- latitude: " + locationDto.getLatitude()
+                + "\n****************************************************************************";
+    }
+
+    private static void backToMenu() {
+        System.out.println("Write 'exit' for going back to main menu.");
+        String input = sc.nextLine();
+        if(input.equals("exit")) {
+            UserInterface.showMenu();
+        }
     }
 }
