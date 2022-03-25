@@ -7,9 +7,9 @@ import pl.sda.view.UserInterface;
 import java.util.Scanner;
 
 public class LocationController {
+
     private static Scanner sc = new Scanner(System.in);
     private static final LocationService locationService = new LocationService();
-
 
     public static LocationDto insertLocation() {
         String name = getName();
@@ -17,7 +17,8 @@ public class LocationController {
         String country = getCountry();
         float longitude = getLongitude();
         float latitude = getLatitude();
-        sc.nextLine();
+        //po co to?
+//        sc.nextLine();
         LocationDto result = new LocationDto();
         result.setName(name);
         result.setRegion(region);
@@ -27,7 +28,6 @@ public class LocationController {
 
         return result;
     }
-
 
     public void addLocation() {
         LocationDto input = insertLocation();
@@ -105,8 +105,8 @@ public class LocationController {
 
     private static String printLocationDto(LocationDto locationDto) {
         return " - " + locationDto.getName() + "\nRegion: " + locationDto.getRegion()
-                + "\nContry: " + locationDto.getCountry()
-                + "\n Coordinates:\n\t- longitude: " + locationDto.getLongitude()
+                + "\nCountry: " + locationDto.getCountry()
+                + "\nCoordinates:\n\t- longitude: " + locationDto.getLongitude()
                 + "\n\t- latitude: " + locationDto.getLatitude()
                 + "\n****************************************************************************";
     }
@@ -114,7 +114,7 @@ public class LocationController {
     private static void backToMenu() {
         System.out.println("Write 'exit' for going back to main menu.");
         String input = sc.nextLine();
-        if(input.equals("exit")) {
+        if (input.equals("exit")) {
             UserInterface.showMenu();
         }
     }

@@ -10,10 +10,10 @@ import java.util.Scanner;
 
 public class WeatherController {
 
-    private final LocationService locationService = new LocationService();
-    private final LocationController locationController = new LocationController();
-    private final WeatherService weatherService = new WeatherService();
-    private final Scanner sc = new Scanner(System.in);
+    private static final LocationService locationService = new LocationService();
+    private static final LocationController locationController = new LocationController();
+    private static final WeatherService weatherService = new WeatherService();
+    private static final Scanner sc = new Scanner(System.in);
 
     public void showWeatherMenu() {
         String choice;
@@ -47,7 +47,10 @@ public class WeatherController {
     }
 
     private int getDay() {
-        return 0;
+        System.out.println("Provide the day of the forecast (1-7): ");
+        String dayOfForecast = sc.next();
+
+        return Integer.parseInt(dayOfForecast);
     }
 
     public void showWeatherForTomorrow() {
@@ -58,7 +61,7 @@ public class WeatherController {
 
     private LocationDto getLocation() {
         System.out.println("Please enter the name of the location: ");
-        String name = sc.nextLine();
+        String name = sc.next();
         LocationDto result = locationService.findByName(name);
         if (result != null) {
             return result;
