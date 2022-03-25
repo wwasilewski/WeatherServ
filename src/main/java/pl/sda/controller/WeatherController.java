@@ -6,6 +6,7 @@ import pl.sda.service.LocationService;
 import pl.sda.service.WeatherService;
 import pl.sda.view.UserInterface;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class WeatherController {
@@ -28,16 +29,30 @@ public class WeatherController {
             switch (choice) {
                 case "1" -> showWeatherForTomorrow();
                 case "2" -> showWeatherForSpecificDay();
-                case "3" -> showAllWeather();
+//                case "3" -> showAllWeather();
                 case "0" -> UserInterface.showMenu();
                 default -> System.out.println("Wrong input, pick again");
             }
         } while (!choice.equals("0"));
     }
 
-    private void showAllWeather() {
+//    private void showAllWeathers() {
+//        List<WeatherDto> allWeathers = weatherService.getAllWeathers();
+//
+//        for (WeatherDto weatherDto : allWeathers) {
+//            System.out.println(weatherDto.getPressure());
+//        }
+//    }
 
-    }
+//    private void showAllWeathersForLocation() {
+//        System.out.println("Provide the location: ");
+//        String locationName = sc.next();
+//        List<WeatherDto> weatherForLocation = weatherService.getWeatherForLocation(locationName);
+//
+//        for (WeatherDto weatherDto : weatherForLocation) {
+//            System.out.println(weatherDto.toString());
+//        }
+//    }
 
     private void showWeatherForSpecificDay() {
         String locationName = getLocation().getName();

@@ -40,4 +40,12 @@ public class WeatherService {
                 .map(weatherMapper::mapEntityToDto)
                 .collect(Collectors.toList());
     }
+
+//    public List<WeatherDto> getAllWeathers() {
+//        List<Weather> weatherList = weatherDAO.findAllWeathers();
+//        return weatherList.stream()
+//                .map(weatherMapper::mapEntityToDto)
+//                .collect(Collectors.toList());
+//    }
+
 }

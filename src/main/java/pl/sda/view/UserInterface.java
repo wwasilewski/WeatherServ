@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class UserInterface {
 
-    private static final Scanner sc = new Scanner(System.in).useDelimiter("\n");
+    private static final Scanner sc = new Scanner(System.in);
     private static final LocationController locationController = new LocationController();
     private static final WeatherController weatherController = new WeatherController();
 
@@ -16,7 +16,7 @@ public class UserInterface {
         do {
             System.out.println("[1] Add location");
             System.out.println("[2] Show all locations");
-            System.out.println("[3] Show weather for specific location");
+            System.out.println("[3] Weather Menu");
             System.out.println("[0] EXIT");
 
             choice = sc.next();
