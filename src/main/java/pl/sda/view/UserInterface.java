@@ -1,6 +1,7 @@
 package pl.sda.view;
 
 import pl.sda.controller.LocationController;
+import pl.sda.controller.WeatherController;
 
 import java.util.Scanner;
 
@@ -8,7 +9,7 @@ public class UserInterface {
 
     private static final Scanner sc = new Scanner(System.in).useDelimiter("\n");
     private static final LocationController locationController = new LocationController();
-
+    private static final WeatherController weatherController = new WeatherController();
 
     public static void showMenu() {
         String choice;
@@ -23,11 +24,10 @@ public class UserInterface {
             switch (choice) {
                 case "1" -> locationController.addLocation();
                 case "2" -> locationController.showAllLocations();
-                case "3" -> System.out.println("nic");
+                case "3" -> weatherController.showWeatherMenu();
                 case "0" -> System.out.println("Good bye");
                 default -> System.out.println("Wrong input, pick again");
             }
         } while (!choice.equals("0"));
     }
-
 }

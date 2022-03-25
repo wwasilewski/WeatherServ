@@ -8,8 +8,6 @@ import pl.sda.mapper.WeatherMapper;
 import pl.sda.model.Weather;
 import pl.sda.model.openWeatherAPI.OpenWeatherObject;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -20,7 +18,7 @@ public class WeatherService {
     private final WeatherDAO weatherDAO = new WeatherDAO();
     private final WeatherMapper weatherMapper = new WeatherMapper();
 
-    public WeatherDto saveWeatherForLocationWithoutDay(String locationName) throws URISyntaxException, IOException, InterruptedException {
+    public WeatherDto saveWeatherForLocationWithoutDay(String locationName) {
         LocationDto location = locationService.findByName(locationName);
         OpenWeatherObject openWeatherObject = openWeatherReader.readWeather(location);
         Weather weather = OpenWeatherObjectToWeatherMapper.readWeatherForSpecificDay(openWeatherObject, 8);
@@ -28,7 +26,7 @@ public class WeatherService {
         return weatherMapper.mapEntityToDto(weather);
     }
 
-    public WeatherDto saveWeatherForLocationForDefinedDay(String locationName, int dayOfForecast) throws URISyntaxException, IOException, InterruptedException {
+    public WeatherDto saveWeatherForLocationForDefinedDay(String locationName, int dayOfForecast) {
         LocationDto location = locationService.findByName(locationName);
         OpenWeatherObject openWeatherObject = openWeatherReader.readWeather(location);
         Weather weather = OpenWeatherObjectToWeatherMapper.readWeatherForSpecificDay(openWeatherObject, dayOfForecast);
@@ -42,5 +40,4 @@ public class WeatherService {
                 .map(weatherMapper::mapEntityToDto)
                 .collect(Collectors.toList());
     }
-
 }

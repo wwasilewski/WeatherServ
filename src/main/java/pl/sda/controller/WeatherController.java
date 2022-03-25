@@ -6,8 +6,6 @@ import pl.sda.service.LocationService;
 import pl.sda.service.WeatherService;
 import pl.sda.view.UserInterface;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.Scanner;
 
 public class WeatherController {
@@ -15,9 +13,9 @@ public class WeatherController {
     private final LocationService locationService = new LocationService();
     private final LocationController locationController = new LocationController();
     private final WeatherService weatherService = new WeatherService();
-    private Scanner sc = new Scanner(System.in);
+    private final Scanner sc = new Scanner(System.in);
 
-    public void showWeatherMenu() throws URISyntaxException, IOException, InterruptedException {
+    public void showWeatherMenu() {
         String choice;
         do {
             System.out.println("[1] Check weather for tomorrow");
@@ -41,7 +39,7 @@ public class WeatherController {
 
     }
 
-    private void showWeatherForSpecificDay() throws URISyntaxException, IOException, InterruptedException {
+    private void showWeatherForSpecificDay() {
         String locationName = getLocation().getName();
         int dayOfForecast = getDay();
         WeatherDto weatherDto = weatherService.saveWeatherForLocationForDefinedDay(locationName, dayOfForecast);
@@ -52,9 +50,9 @@ public class WeatherController {
         return 0;
     }
 
-    public void showWeatherForTomorrow() throws URISyntaxException, IOException, InterruptedException {
-    String locationName = getLocation().getName();
-    WeatherDto weatherDto = weatherService.saveWeatherForLocationWithoutDay(locationName);
+    public void showWeatherForTomorrow() {
+        String locationName = getLocation().getName();
+        WeatherDto weatherDto = weatherService.saveWeatherForLocationWithoutDay(locationName);
         System.out.println(locationName.concat(weatherDto.toString()));
     }
 
@@ -87,8 +85,4 @@ public class WeatherController {
             }
         } while (!choice.equals("0"));
     }
-
-
-
-
 }
