@@ -16,25 +16,6 @@ public class WeatherController {
     private static final WeatherService weatherService = new WeatherService();
     private static final Scanner sc = new Scanner(System.in);
 
-    public void showWeatherMenu() {
-        String choice;
-        do {
-            System.out.println("[1] Check weather for tomorrow");
-            System.out.println("[2] Check weather for specific day in next 7 days");
-            System.out.println("[3] Show all weather history");
-            System.out.println("[0] Back to main menu");
-
-            choice = sc.next();
-
-            switch (choice) {
-                case "1" -> showWeatherForTomorrow();
-                case "2" -> showWeatherForSpecificDay();
-//                case "3" -> showAllWeather();
-                case "0" -> UserInterface.showMenu();
-                default -> System.out.println("Wrong input, pick again");
-            }
-        } while (!choice.equals("0"));
-    }
 
 //    private void showAllWeathers() {
 //        List<WeatherDto> allWeathers = weatherService.getAllWeathers();
@@ -54,7 +35,7 @@ public class WeatherController {
 //        }
 //    }
 
-    private void showWeatherForSpecificDay() {
+    public void showWeatherForSpecificDay() {
         String locationName = getLocation().getName();
         int dayOfForecast = getDay();
         WeatherDto weatherDto = weatherService.saveWeatherForLocationForDefinedDay(locationName, dayOfForecast);
