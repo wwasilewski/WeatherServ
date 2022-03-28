@@ -44,7 +44,7 @@ public class UserInterface {
             switch (choice) {
                 case "1" -> weatherController.showWeatherForTomorrow();
                 case "2" -> weatherController.showWeatherForSpecificDay();
-//                case "3" -> showAllWeather();
+                case "3" -> weatherController.showAllWeathers();
                 case "4" -> showMenu();
                 case "0" -> System.out.println("Good bye");
                 default -> System.out.println("Wrong input, pick again");

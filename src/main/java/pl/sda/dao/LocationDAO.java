@@ -45,7 +45,12 @@ public class LocationDAO {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.save(location);
+
+            if(findByName(location.getName()) != null) {
+                System.out.println("Location with that name already exists.");
+            } else {
+                session.save(location);
+            }
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {

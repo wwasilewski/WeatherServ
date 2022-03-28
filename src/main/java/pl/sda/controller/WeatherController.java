@@ -17,23 +17,20 @@ public class WeatherController {
     private static final Scanner sc = new Scanner(System.in);
 
 
-//    private void showAllWeathers() {
-//        List<WeatherDto> allWeathers = weatherService.getAllWeathers();
-//
-//        for (WeatherDto weatherDto : allWeathers) {
-//            System.out.println(weatherDto.getPressure());
-//        }
-//    }
+    public void showAllWeathers() {
+        List<WeatherDto> allWeathers = weatherService.getAllWeathers();
+        allWeathers.forEach(System.out::println);
+    }
 
-//    private void showAllWeathersForLocation() {
-//        System.out.println("Provide the location: ");
-//        String locationName = sc.next();
-//        List<WeatherDto> weatherForLocation = weatherService.getWeatherForLocation(locationName);
-//
-//        for (WeatherDto weatherDto : weatherForLocation) {
-//            System.out.println(weatherDto.toString());
-//        }
-//    }
+    private void showAllWeathersForLocation() {
+        System.out.println("Provide the location: ");
+        String locationName = sc.next();
+        List<WeatherDto> weatherForLocation = weatherService.getWeatherForLocation(locationName);
+
+        for (WeatherDto weatherDto : weatherForLocation) {
+            System.out.println(weatherDto.toString());
+        }
+    }
 
     public void showWeatherForSpecificDay() {
         String locationName = getLocation().getName();

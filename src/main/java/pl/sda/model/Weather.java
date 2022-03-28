@@ -38,8 +38,8 @@ public class Weather {
     @Column(name = "timestamp")
     private long timestamp;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "location_id")
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "location_id", nullable = false)
     private Location location;
 
 }

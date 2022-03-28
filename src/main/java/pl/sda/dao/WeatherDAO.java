@@ -60,7 +60,8 @@ public class WeatherDAO {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
-            result = session.createQuery("SELECT n FROM Weather AS n", Weather.class)
+            result = session.createQuery("SELECT w.*, l.* FROM weathers w " +
+                    "JOIN locations l ON w.location_id = l.location_id", Weather.class)
                     .getResultList();
 
             transaction.commit();
