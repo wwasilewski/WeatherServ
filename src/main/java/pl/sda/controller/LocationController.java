@@ -17,8 +17,6 @@ public class LocationController {
         String country = getCountry();
         float longitude = getLongitude();
         float latitude = getLatitude();
-        //po co to?
-//        sc.nextLine();
         LocationDto result = new LocationDto();
         result.setName(name);
         result.setRegion(region);
@@ -104,11 +102,12 @@ public class LocationController {
     }
 
     private static String printLocationDto(LocationDto locationDto) {
-        return " - " + locationDto.getName() + "\nRegion: " + locationDto.getRegion()
+        return "\nLocation: " + locationDto.getName()
+                + "\nRegion: " + locationDto.getRegion()
                 + "\nCountry: " + locationDto.getCountry()
                 + "\nCoordinates:\n\t- longitude: " + locationDto.getLongitude()
                 + "\n\t- latitude: " + locationDto.getLatitude()
-                + "\n****************************************************************************";
+                + "\n_______________________________________________";
     }
 
     private static void backToMenu() {

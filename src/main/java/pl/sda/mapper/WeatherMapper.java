@@ -4,10 +4,18 @@ import pl.sda.dto.WeatherDto;
 import pl.sda.model.Weather;
 import pl.sda.service.LocationService;
 
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.Date;
+import java.util.TimeZone;
+
+
 public class WeatherMapper implements Mapper<WeatherDto, Weather> {
 
     private final LocationService locationService = new LocationService();
     private final LocationMapper locationMapper = new LocationMapper();
+
 
     @Override
     public WeatherDto mapEntityToDto(Weather weather) {
@@ -17,7 +25,7 @@ public class WeatherMapper implements Mapper<WeatherDto, Weather> {
                 .humidity(weather.getHumidity())
                 .windSpeed(weather.getWindSpeed())
                 .windDeg(weather.getWindDeg())
-                .timestamp(weather.getTimestamp())
+                .date(LocalDateTime.ofInstant(Instant.ofEpochMilli(weather.getTimestamp() * 1000), TimeZone.getDefault().toZoneId()))
                 .locationName(weather.getLocation().getName())
                 .build();
     }
@@ -30,7 +38,7 @@ public class WeatherMapper implements Mapper<WeatherDto, Weather> {
                 .humidity(weatherDto.getHumidity())
                 .windSpeed(weatherDto.getWindSpeed())
                 .windDeg(weatherDto.getWindDeg())
-                .timestamp(weatherDto.getTimestamp())
+                .timestamp(weatherDto.getDate().atZone(TimeZone.getDefault().toZoneId()).toEpochSecond())
                 .location(locationMapper.mapDtoToEntity(locationService.findByName(weatherDto.getLocationName())))
                 .build();
     }

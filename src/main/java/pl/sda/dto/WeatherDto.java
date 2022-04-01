@@ -4,7 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.sda.model.Location;
+import java.time.LocalDateTime;
+
 
 @Data
 @NoArgsConstructor
@@ -17,7 +18,7 @@ public class WeatherDto {
     private int humidity;
     private float windSpeed; //wind speed
     private float windDeg; //wind direction
-    private long timestamp; //date
+    private LocalDateTime date;
     private String locationName;
 
 }

@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import pl.sda.connection.HibernateUtil;
 import pl.sda.model.Weather;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -55,14 +56,12 @@ public class WeatherDAO {
 
     public List<Weather> findAllWeathers() {
         Transaction transaction = null;
-        List<Weather> result = Collections.emptyList();
+        List<Weather> result = new ArrayList<>();
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
-            result = session.createQuery("SELECT w.*, l.* FROM weathers w " +
-                    "JOIN locations l ON w.location_id = l.location_id", Weather.class)
-                    .getResultList();
+            result = session.createQuery("SELECT w FROM Weather w", Weather.class).getResultList();
 
             transaction.commit();
 
