@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import pl.sda.model.Location;
 
 @Data
 @NoArgsConstructor
@@ -17,14 +18,6 @@ public class WeatherDto {
     private float windSpeed; //wind speed
     private float windDeg; //wind direction
     private long timestamp; //date
+    private String locationName;
 
-    @Override
-    public String toString() {
-        return "\ttemperature= " + temp + "C" +
-                ", pressure=" + pressure + "hPa" +
-                ", humidity=" + humidity + "%" +
-                ", wind speed=" + windSpeed + "km/h" +
-                ", wind direction=" + windDeg + "deg" +
-                ", date=" + timestamp;
-    }
 }

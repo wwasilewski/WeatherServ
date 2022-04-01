@@ -6,42 +6,33 @@ import pl.sda.service.LocationService;
 import pl.sda.service.WeatherService;
 import pl.sda.view.UserInterface;
 
-import java.io.IOException;
-import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Scanner;
 
 public class WeatherController {
 
-    private final LocationService locationService = new LocationService();
-    private final LocationController locationController = new LocationController();
-    private final WeatherService weatherService = new WeatherService();
-    private Scanner sc = new Scanner(System.in);
+    private static final LocationService locationService = new LocationService();
+    private static final LocationController locationController = new LocationController();
+    private static final WeatherService weatherService = new WeatherService();
+    private static final Scanner sc = new Scanner(System.in);
 
-    public void showWeatherMenu() throws URISyntaxException, IOException, InterruptedException {
-        String choice;
-        do {
-            System.out.println("[1] Check weather for tomorrow");
-            System.out.println("[2] Check weather for specific day in next 7 days");
-            System.out.println("[3] Show all weather history");
-            System.out.println("[0] Back to main menu");
 
-            choice = sc.next();
-
-            switch (choice) {
-                case "1" -> showWeatherForTomorrow();
-                case "2" -> showWeatherForSpecificDay();
-                case "3" -> showAllWeather();
-                case "0" -> UserInterface.showMenu();
-                default -> System.out.println("Wrong input, pick again");
-            }
-        } while (!choice.equals("0"));
+    public void showAllWeathers() {
+        List<WeatherDto> allWeathers = weatherService.getAllWeathers();
+        allWeathers.forEach(System.out::println);
     }
 
-    private void showAllWeather() {
+    private void showAllWeathersForLocation() {
+        System.out.println("Provide the location: ");
+        String locationName = sc.next();
+        List<WeatherDto> weatherForLocation = weatherService.getWeatherForLocation(locationName);
 
+        for (WeatherDto weatherDto : weatherForLocation) {
+            System.out.println(weatherDto.toString());
+        }
     }
 
-    private void showWeatherForSpecificDay() throws URISyntaxException, IOException, InterruptedException {
+    public void showWeatherForSpecificDay() {
         String locationName = getLocation().getName();
         int dayOfForecast = getDay();
         WeatherDto weatherDto = weatherService.saveWeatherForLocationForDefinedDay(locationName, dayOfForecast);
@@ -49,18 +40,21 @@ public class WeatherController {
     }
 
     private int getDay() {
-        return 0;
+        System.out.println("Provide the day of the forecast (1-7): ");
+        String dayOfForecast = sc.next();
+
+        return Integer.parseInt(dayOfForecast);
     }
 
-    public void showWeatherForTomorrow() throws URISyntaxException, IOException, InterruptedException {
-    String locationName = getLocation().getName();
-    WeatherDto weatherDto = weatherService.saveWeatherForLocationWithoutDay(locationName);
+    public void showWeatherForTomorrow() {
+        String locationName = getLocation().getName();
+        WeatherDto weatherDto = weatherService.saveWeatherForLocationWithoutDay(locationName);
         System.out.println(locationName.concat(weatherDto.toString()));
     }
 
     private LocationDto getLocation() {
         System.out.println("Please enter the name of the location: ");
-        String name = sc.nextLine();
+        String name = sc.next();
         LocationDto result = locationService.findByName(name);
         if (result != null) {
             return result;
@@ -87,8 +81,4 @@ public class WeatherController {
             }
         } while (!choice.equals("0"));
     }
-
-
-
-
 }
