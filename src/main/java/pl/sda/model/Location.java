@@ -38,5 +38,4 @@ public class Location {
 
     @OneToMany(mappedBy = "location", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Weather> weather;
-
 }

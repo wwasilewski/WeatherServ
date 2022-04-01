@@ -13,8 +13,7 @@ import java.net.http.HttpResponse;
 
 public class APIWeatherReader<T> {
 
-
-    public T readWeather(LocationDto location, String apiCall, Class<T> className) throws URISyntaxException, IOException, InterruptedException{
+    public T readWeather(LocationDto location, String apiCall, Class<T> className) throws URISyntaxException, IOException, InterruptedException {
         URI uri = new URI(apiCall);
         HttpRequest request = HttpRequest.newBuilder()
                 .GET()
@@ -23,8 +22,7 @@ public class APIWeatherReader<T> {
         HttpClient client = HttpClient.newHttpClient();
         HttpResponse<String> response = client.send(request, HttpResponse.BodyHandlers.ofString());
         Gson mapper = new Gson();
-        return mapper.fromJson(response.body(),className);
-
+        return mapper.fromJson(response.body(), className);
     }
 }
 
