@@ -91,6 +91,27 @@ public class WeatherController {
                 + ", pressure: " + weatherDto.getPressure() + " hPa"
                 + ", humidity: " + weatherDto.getHumidity() + "%"
                 + ", wind speed: " + weatherDto.getWindSpeed() + " km/h"
-                + ", wind direction: " + weatherDto.getWindDeg() + ".";
+                + ", wind direction: " + getWindName(weatherDto) + ".";
+    }
+
+    private static String getWindName(WeatherDto weatherDto) {
+        float windDeg = weatherDto.getWindDeg();
+        if(windDeg >= 22.5 && windDeg < 67.5) {
+            return "north-east";
+        }else if(windDeg < 112.5) {
+            return "east";
+        }else if(windDeg < 157.5) {
+            return "south-east";
+        }else if(windDeg < 202.5) {
+            return "south";
+        }else if(windDeg < 247.5) {
+            return "south-west";
+        }else if(windDeg < 292.5) {
+            return "west";
+        }else if(windDeg < 337.5) {
+            return "north-west";
+        }else {
+            return "north";
+        }
     }
 }
