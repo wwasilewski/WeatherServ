@@ -3,7 +3,6 @@ package pl.sda.service;
 import com.google.gson.Gson;
 import lombok.extern.slf4j.Slf4j;
 import pl.sda.dto.LocationDto;
-import pl.sda.mapper.LocationMapper;
 import pl.sda.model.openWeatherAPI.OpenWeatherObject;
 
 import java.io.IOException;
@@ -17,7 +16,6 @@ import java.net.http.HttpResponse;
 public class OpenWeatherReader {
 
     private static final String APP_ID = "63cbd02cf64d7539e73a894b9ce3f787";
-    private static final LocationMapper locationMapper = new LocationMapper();
 
     public static String createAPICall(LocationDto location) {
         String lat = String.valueOf(location.getLatitude());
@@ -53,6 +51,5 @@ public class OpenWeatherReader {
         Gson mapper = new Gson();
 
         return mapper.fromJson(response.body(), OpenWeatherObject.class);
-
     }
 }
