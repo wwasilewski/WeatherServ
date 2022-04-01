@@ -18,6 +18,6 @@ public class WeatherDto {
     private float windSpeed; //wind speed
     private float windDeg; //wind direction
     private long timestamp; //date
-    private Location location;
+    private String locationName;
 
 }

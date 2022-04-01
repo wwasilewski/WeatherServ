@@ -26,7 +26,7 @@ public class WeatherService {
         LocationDto location = locationService.findByName(locationName);
         OpenWeatherObject openWeatherObject = openWeatherReader.readWeather(location);
         Weather weather = OpenWeatherObjectToWeatherMapper.readWeatherForSpecificDay(openWeatherObject, 8);
-        weather.setLocation(locationMapper.mapDtoToEntity(location));
+        weather.setLocation(locationDAO.findByName(location.getName()));
         weatherDAO.save(weather);
         return weatherMapper.mapEntityToDto(weather);
     }

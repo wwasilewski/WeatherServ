@@ -21,7 +21,7 @@ public class Location {
     @Column(name = "location_id")
     private Integer id;
 
-    @Column(name = "name", nullable = false)
+    @Column(name = "name", nullable = false, unique = true)
     private String name;
 
     @Column(name = "region")
@@ -36,7 +36,7 @@ public class Location {
     @Column(name = "latitude")
     private float latitude;
 
-    @OneToMany(mappedBy = "location", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "location", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Weather> weather;
 
 }
