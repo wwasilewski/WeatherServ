@@ -29,4 +29,11 @@ public class LocationService {
                 .map(mapper::mapEntityToDto)
                 .collect(Collectors.toList());
     }
+
+    public void deleteAll() {
+        List<LocationDto> allLocations = findAllLocations();
+        allLocations.forEach(
+                locationDto -> locationDAO.deleteLocation(mapper.mapDtoToEntity(locationDto))
+        );
+    }
 }

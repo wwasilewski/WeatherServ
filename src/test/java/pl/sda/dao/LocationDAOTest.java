@@ -1,5 +1,6 @@
 package pl.sda.dao;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import pl.sda.model.Location;
 
@@ -9,7 +10,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class LocationDAOTest {
 
-    private LocationDAO locationDAO = new LocationDAO();
+    @AfterEach
+    public void cleanTable() {
+        List<Location> locations = locationDAO.findAllLocations();
+        locations.forEach(locationDAO::deleteLocation);
+    }
+
+    private final LocationDAO locationDAO = new LocationDAO();
 
     @Test
     void shouldFindByCityNameIfExists() {
@@ -29,24 +36,14 @@ class LocationDAOTest {
         assertThat(foundLocation).isNull();
     }
 
-    @Test
-    void doNotSaveLocationIfCityNameIsEmpty() {
-        Location location = new Location();
-        //location.setName("Not null name");
-        location.setCountry("PL");
-        locationDAO.saveLocation(location);
-        List<Location> allLocations = locationDAO.findAllLocations();
-        assertThat(allLocations).isEmpty();
-    }
 
-    @Test
-    void doNotSaveLocationIfCountryNameIsEmpty() {
-        Location location = new Location();
-        location.setName("Warsaw");
-        locationDAO.saveLocation(location);
-        List<Location> allLocations = locationDAO.findAllLocations();
-        assertThat(allLocations).isEmpty();
-    }
+//    @Test
+//    void doNotSaveLocationIfCountryNameIsEmpty() {
+//        Location location = new Location();
+//        location.setName("Warsaw");
+//        locationDAO.saveLocation(location);
+//        assertThat(locationDAO.findByName("Warsaw")).isNull();
+//    }
 
     @Test
     void saveLocationIfRegionIsNull() {
@@ -56,20 +53,6 @@ class LocationDAOTest {
         locationDAO.saveLocation(location);
         Location result = locationDAO.findByName("Warsaw");
         assertThat(location.getId()).isEqualTo(result.getId());
-    }
-
-    @Test
-    void doNotSaveLocationIfCoordinatesAreIncorrect() {
-        float latitude = 1000;
-        float longitude = 1000;
-        Location location = new Location();
-        location.setName("Warsaw");
-        location.setCountry("PL");
-        location.setLongitude(longitude);
-        location.setLatitude(latitude);
-        locationDAO.saveLocation(location);
-        List<Location> allLocations = locationDAO.findAllLocations();
-        assertThat(allLocations).isEmpty();
     }
 
 
