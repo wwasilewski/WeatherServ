@@ -19,24 +19,25 @@ public class WeatherController {
 
     public void showAllWeathers() {
         List<WeatherDto> allWeathers = weatherService.getAllWeathers();
-        allWeathers.forEach(System.out::println);
+        allWeathers.stream()
+                .map(WeatherController::printWeatherDto)
+                .forEach(System.out::println);
     }
 
-    private void showAllWeathersForLocation() {
+    public void showAllWeathersForLocation() {
         System.out.println("Provide the location: ");
         String locationName = sc.next();
         List<WeatherDto> weatherForLocation = weatherService.getWeatherForLocation(locationName);
-
-        for (WeatherDto weatherDto : weatherForLocation) {
-            System.out.println(weatherDto.toString());
-        }
+        weatherForLocation.stream()
+                .map(WeatherController::printWeatherDto)
+                .forEach(System.out::println);
     }
 
     public void showWeatherForSpecificDay() {
         String locationName = getLocation().getName();
         int dayOfForecast = getDay();
         WeatherDto weatherDto = weatherService.saveWeatherForLocationForDefinedDay(locationName, dayOfForecast);
-        System.out.println(locationName.concat(weatherDto.toString()));
+        System.out.println(printWeatherDto(weatherDto));
     }
 
     private int getDay() {
@@ -49,7 +50,7 @@ public class WeatherController {
     public void showWeatherForTomorrow() {
         String locationName = getLocation().getName();
         WeatherDto weatherDto = weatherService.saveWeatherForLocationWithoutDay(locationName);
-        System.out.println(locationName.concat(weatherDto.toString()));
+        System.out.println(printWeatherDto(weatherDto));
     }
 
     private LocationDto getLocation() {
@@ -80,5 +81,15 @@ public class WeatherController {
                 default -> System.out.println("Wrong input, pick again");
             }
         } while (!choice.equals("0"));
+    }
+
+    private static String printWeatherDto(WeatherDto weatherDto) {
+        return "Location: " + weatherDto.getLocationName()
+                + ", date: " + weatherDto.getTimestamp()
+                + ", temperature: " + weatherDto.getTemp() + " C"
+                + ", pressure: " + weatherDto.getPressure() + " hPa"
+                + ", humidity: " + weatherDto.getHumidity() + "%"
+                + ", wind speed: " + weatherDto.getWindSpeed() + " km/h"
+                + ", wind direction: " + weatherDto.getWindDeg() + ".";
     }
 }

@@ -36,7 +36,8 @@ public class UserInterface {
             System.out.println("[1] Check weather for tomorrow");
             System.out.println("[2] Check weather for specific day in next 7 days");
             System.out.println("[3] Show all weather history");
-            System.out.println("[4] Back to main menu");
+            System.out.println("[4] Show weather history for specific location");
+            System.out.println("[5] Back to main menu");
             System.out.println("[0] EXIT");
 
             choice = sc.next();
@@ -45,7 +46,8 @@ public class UserInterface {
                 case "1" -> weatherController.showWeatherForTomorrow();
                 case "2" -> weatherController.showWeatherForSpecificDay();
                 case "3" -> weatherController.showAllWeathers();
-                case "4" -> showMenu();
+                case "4" -> weatherController.showAllWeathersForLocation();
+                case "5" -> showMenu();
                 case "0" -> System.out.println("Good bye");
                 default -> System.out.println("Wrong input, pick again");
             }
