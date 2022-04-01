@@ -52,7 +52,7 @@ public class WeatherDAO {
         return null;
     }
 
-    public List<Weather> findAllWeathers() {
+    public List<Weather> findAllWeather() {
         Transaction transaction = null;
         List<Weather> result = new ArrayList<>();
 
@@ -72,7 +72,7 @@ public class WeatherDAO {
         return result;
     }
 
-    public List<Weather> findWeathersByCity(String city) {
+    public List<Weather> findWeatherByCity(String city) {
         Transaction transaction = null;
         List<Weather> result = Collections.emptyList();
 

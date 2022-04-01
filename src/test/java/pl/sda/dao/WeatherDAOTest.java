@@ -81,20 +81,20 @@ public class WeatherDAOTest {
     }
 
     @Test
-    public void returnAllWeathersTest() {
-        List<Weather> result = weatherDAO.findAllWeathers();
+    public void returnAllWeatherTest() {
+        List<Weather> result = weatherDAO.findAllWeather();
         assertThat(result.size()).isEqualTo(3);
     }
 
     @Test
-    public void returnTwoWeathersForCityTest() {
-        List<Weather> result = weatherDAO.findWeathersByCity("Szczecin");
+    public void returnTwoWeatherForCityTest() {
+        List<Weather> result = weatherDAO.findWeatherByCity("Szczecin");
         assertThat(result.size()).isEqualTo(2);
     }
 
     @Test
     public void returnEmptyListWhenNoCityTest() {
-        List<Weather> result = weatherDAO.findWeathersByCity("Wroclaw");
+        List<Weather> result = weatherDAO.findWeatherByCity("Wroclaw");
         assertThat(result.size()).isEqualTo(0);
     }
 }

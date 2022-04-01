@@ -18,14 +18,14 @@ public class WeatherController {
     private static final Scanner sc = new Scanner(System.in);
 
 
-    public void showAllWeathers() {
-        List<WeatherDto> allWeathers = weatherService.getAllWeathers();
-        allWeathers.stream()
+    public void showAllWeather() {
+        List<WeatherDto> allWeather = weatherService.getAllWeather();
+        allWeather.stream()
                 .map(WeatherController::printWeatherDto)
                 .forEach(System.out::println);
     }
 
-    public void showAllWeathersForLocation() {
+    public void showAllWeatherForLocation() {
         System.out.println("Please enter the location: ");
         String locationName = sc.next();
 

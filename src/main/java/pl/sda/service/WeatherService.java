@@ -43,14 +43,14 @@ public class WeatherService {
     }
 
     public List<WeatherDto> getWeatherForLocation(String locationName) {
-        List<Weather> weatherList = weatherDAO.findWeathersByCity(locationName);
+        List<Weather> weatherList = weatherDAO.findWeatherByCity(locationName);
         return weatherList.stream()
                 .map(weatherMapper::mapEntityToDto)
                 .collect(Collectors.toList());
     }
 
-    public List<WeatherDto> getAllWeathers() {
-        List<Weather> weatherList = weatherDAO.findAllWeathers();
+    public List<WeatherDto> getAllWeather() {
+        List<Weather> weatherList = weatherDAO.findAllWeather();
         return weatherList.stream()
                 .map(weatherMapper::mapEntityToDto)
                 .collect(Collectors.toList());

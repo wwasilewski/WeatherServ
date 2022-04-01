@@ -55,7 +55,6 @@ class LocationDAOTest {
         assertThat(location.getId()).isEqualTo(result.getId());
     }
 
-
     @Test
     void findAllLocationsEmptyList() {
         List<Location> allLocations = locationDAO.findAllLocations();
