@@ -78,4 +78,19 @@ public class LocationDAO {
         }
         return locations;
     }
+
+    public void deleteLocation(Location location) {
+        Transaction transaction = null;
+
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            transaction = session.beginTransaction();
+            session.delete(location);
+            transaction.commit();
+        } catch (HibernateException e) {
+            if (transaction != null)
+                transaction.rollback();
+
+            log.error(e.getMessage(), e);
+        }
+    }
 }
