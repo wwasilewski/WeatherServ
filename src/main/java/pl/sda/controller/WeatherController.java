@@ -6,6 +6,7 @@ import pl.sda.service.LocationService;
 import pl.sda.service.WeatherService;
 import pl.sda.view.UserInterface;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Scanner;
 
@@ -85,7 +86,7 @@ public class WeatherController {
 
     private static String printWeatherDto(WeatherDto weatherDto) {
         return "Location: " + weatherDto.getLocationName()
-                + ", date: " + weatherDto.getTimestamp()
+                + " " + weatherDto.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))
                 + ", temperature: " + weatherDto.getTemp() + " C"
                 + ", pressure: " + weatherDto.getPressure() + " hPa"
                 + ", humidity: " + weatherDto.getHumidity() + "%"
