@@ -21,14 +21,14 @@ public class WeatherDAO {
             transaction = session.beginTransaction();
 
             session.save(weather);
+
             transaction.commit();
 
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
-
-                log.error(e.getMessage(), e);
             }
+            log.error(e.getMessage(), e);
         }
     }
 
@@ -43,13 +43,11 @@ public class WeatherDAO {
             transaction.commit();
 
             return weather;
-
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
-
-                log.error(e.getMessage(), e);
             }
+            log.error(e.getMessage(), e);
         }
         return null;
     }
@@ -68,9 +66,8 @@ public class WeatherDAO {
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
-
-                log.error(e.getMessage(), e);
             }
+            log.error(e.getMessage(), e);
         }
         return result;
     }
@@ -93,9 +90,8 @@ public class WeatherDAO {
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
-
-                log.error(e.getMessage(), e);
             }
+            log.error(e.getMessage(), e);
         }
         return result;
     }
