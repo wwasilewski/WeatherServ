@@ -26,6 +26,4 @@ public class OpenWeatherObjectToWeatherMapper {
         result.setWindDeg(weatherObject.getDaily()[dayOfForecast].getWind_deg());
         result.setTimestamp(weatherObject.getDaily()[dayOfForecast].getDt());
     }
-
-
 }

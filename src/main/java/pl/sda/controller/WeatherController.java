@@ -18,16 +18,17 @@ public class WeatherController {
     private static final Scanner sc = new Scanner(System.in);
 
 
-    public void showAllWeathers() {
-        List<WeatherDto> allWeathers = weatherService.getAllWeathers();
-        allWeathers.stream()
+    public void showAllWeather() {
+        List<WeatherDto> allWeather = weatherService.getAllWeather();
+        allWeather.stream()
                 .map(WeatherController::printWeatherDto)
                 .forEach(System.out::println);
     }
 
-    public void showAllWeathersForLocation() {
-        System.out.println("Provide the location: ");
+    public void showAllWeatherForLocation() {
+        System.out.println("Please enter the location: ");
         String locationName = sc.next();
+
         List<WeatherDto> weatherForLocation = weatherService.getWeatherForLocation(locationName);
         weatherForLocation.stream()
                 .map(WeatherController::printWeatherDto)
@@ -37,12 +38,13 @@ public class WeatherController {
     public void showWeatherForSpecificDay() {
         String locationName = getLocation().getName();
         int dayOfForecast = getDay();
+
         WeatherDto weatherDto = weatherService.saveWeatherForLocationForDefinedDay(locationName, dayOfForecast);
         System.out.println(printWeatherDto(weatherDto));
     }
 
     private int getDay() {
-        System.out.println("Provide the day of the forecast (1-7): ");
+        System.out.println("Please enter the day of the forecast (1-7): ");
         String dayOfForecast = sc.next();
 
         return Integer.parseInt(dayOfForecast);
@@ -57,6 +59,7 @@ public class WeatherController {
     private LocationDto getLocation() {
         System.out.println("Please enter the name of the location: ");
         String name = sc.next();
+
         LocationDto result = locationService.findByName(name);
         if (result != null) {
             return result;
@@ -68,6 +71,7 @@ public class WeatherController {
     private void showGetLocationSubmenu() {
         System.out.println("Location with given name doesn't exist. Choose option by number: ");
         String choice;
+
         do {
             System.out.println("[1] Write name of the location again");
             System.out.println("[2] Show all locations");
@@ -96,21 +100,21 @@ public class WeatherController {
 
     private static String getWindName(WeatherDto weatherDto) {
         float windDeg = weatherDto.getWindDeg();
-        if(windDeg >= 22.5 && windDeg < 67.5) {
+        if (windDeg >= 22.5 && windDeg < 67.5) {
             return "north-east";
-        }else if(windDeg < 112.5) {
+        } else if (windDeg < 112.5) {
             return "east";
-        }else if(windDeg < 157.5) {
+        } else if (windDeg < 157.5) {
             return "south-east";
-        }else if(windDeg < 202.5) {
+        } else if (windDeg < 202.5) {
             return "south";
-        }else if(windDeg < 247.5) {
+        } else if (windDeg < 247.5) {
             return "south-west";
-        }else if(windDeg < 292.5) {
+        } else if (windDeg < 292.5) {
             return "west";
-        }else if(windDeg < 337.5) {
+        } else if (windDeg < 337.5) {
             return "north-west";
-        }else {
+        } else {
             return "north";
         }
     }

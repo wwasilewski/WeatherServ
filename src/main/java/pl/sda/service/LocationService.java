@@ -13,8 +13,6 @@ public class LocationService {
     private final LocationDAO locationDAO = new LocationDAO();
     private final LocationMapper mapper = new LocationMapper();
 
-
-
     public void addLocation(LocationDto locationDto) {
         Location location = mapper.mapDtoToEntity(locationDto);
         locationDAO.saveLocation(location);

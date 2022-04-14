@@ -21,14 +21,14 @@ public class WeatherDAO {
             transaction = session.beginTransaction();
 
             session.save(weather);
+
             transaction.commit();
 
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
-
-                log.error(e.getMessage(), e);
             }
+            log.error(e.getMessage(), e);
         }
     }
 
@@ -43,18 +43,16 @@ public class WeatherDAO {
             transaction.commit();
 
             return weather;
-
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
-
-                log.error(e.getMessage(), e);
             }
+            log.error(e.getMessage(), e);
         }
         return null;
     }
 
-    public List<Weather> findAllWeathers() {
+    public List<Weather> findAllWeather() {
         Transaction transaction = null;
         List<Weather> result = new ArrayList<>();
 
@@ -68,14 +66,13 @@ public class WeatherDAO {
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
-
-                log.error(e.getMessage(), e);
             }
+            log.error(e.getMessage(), e);
         }
         return result;
     }
 
-    public List<Weather> findWeathersByCity(String city) {
+    public List<Weather> findWeatherByCity(String city) {
         Transaction transaction = null;
         List<Weather> result = Collections.emptyList();
 
@@ -93,9 +90,8 @@ public class WeatherDAO {
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
-
-                log.error(e.getMessage(), e);
             }
+            log.error(e.getMessage(), e);
         }
         return result;
     }

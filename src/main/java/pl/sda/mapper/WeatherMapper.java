@@ -6,8 +6,6 @@ import pl.sda.service.LocationService;
 
 import java.time.Instant;
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.Date;
 import java.util.TimeZone;
 
 
@@ -15,7 +13,6 @@ public class WeatherMapper implements Mapper<WeatherDto, Weather> {
 
     private final LocationService locationService = new LocationService();
     private final LocationMapper locationMapper = new LocationMapper();
-
 
     @Override
     public WeatherDto mapEntityToDto(Weather weather) {

@@ -21,16 +21,13 @@ public class LocationDAO {
             transaction = session.beginTransaction();
 
             Optional<Location> result = session.createQuery("FROM Location l " +
-                    "WHERE l.name = :name").
+                            "WHERE l.name = :name").
                     setParameter("name", name).
                     uniqueResultOptional();
 
             transaction.commit();
 
-            if(result.isPresent()) {
-                return (Location) result.get();
-            }
-            return null;
+            return result.orElse(null);
         } catch (HibernateException e) {
             if (transaction != null) {
                 transaction.rollback();
@@ -46,11 +43,12 @@ public class LocationDAO {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
 
-            if(findByName(location.getName()) != null) {
+            if (findByName(location.getName()) != null) {
                 System.out.println("Location with that name already exists.");
             } else {
                 session.save(location);
             }
+
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
@@ -84,12 +82,14 @@ public class LocationDAO {
 
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
+
             session.delete(location);
+
             transaction.commit();
         } catch (HibernateException e) {
-            if (transaction != null)
+            if (transaction != null) {
                 transaction.rollback();
-
+            }
             log.error(e.getMessage(), e);
         }
     }
